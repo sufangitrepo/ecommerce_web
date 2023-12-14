@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grocery store</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+
+    <!-- font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- css file link -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'cart.css' %}">
+</head>
+<body>
+    <header class="header">
+
+        <a href="/app" class="logo"> <i class="fas fa-shopping-basket"></i>grocer</a>
+
+        <nav class="navbar">
+            <a href="/app">home</a>
+            <a href="/app">categories</a>
+            <a href="/app/products/">products</a>
+
+        </nav>        
+    </header>
+    
+    <div style="margin-top: 100px;">
+        <!-- <a href="#" class="btn">checkout</a>
+        <div style="display: flex; justify-content: center; flex-wrap: wrap; margin-top: 40px;">
+            
+        
+            {% for cartItem in cartItems %}
+                <div class="box">
+                    <i class="fas fa-trash"></i>
+                    <img style="width: 200px; height: 200px; " src="/{{cartItem.product.img}}" alt="not found">
+                    <div class="content">
+                        <h3>watermelon</h3>
+                        <span class="price">PKR {{cartItem.product.price}}/-</span>
+                        <span class="quantity">qty : {{cartItem.qty}}</span>
+                    </div>
+                </div>
+            {% endfor %}
+           
+        </div> 
+        </div>
+           -->
+    </div>
+    <!--  start-->
+    
+   
+    <div class="shopping-cart">
+        <!-- Title -->
+        <div style="display: flex; align-items: center; justify-content: space-around;"> 
+            <div class="title">
+                Shopping Bag
+              </div>
+              
+              {% if cart %}
+                <h3>Total: {{cart.total}}</h3>
+                <a href="/app/order/{{cart.id}}" class="btn">checkout</a>
+              {% endif %}
+            </div>
+        {% for cartItem in cartItems %}
+            <div class="item">
+                <div class="buttons">
+                    <a href="/app/deleteCartItem/{{cartItem.id}}"><img class="delete-icon" src="{% static 'delete.png' %}"/></a>
+                </div>
+            
+                <div class="image">
+                    <img src="/media/{{cartItem.product.img}}" alt="" />
+                </div>
+            
+                <div class="description">
+                    <span>{{cartItem.product.name}}</span>
+                </div>
+            
+                <div class="quantity">
+                    <button class="plus-btn" type="button" name="button">
+                        <a href="/app/increment/{{cartItem.id}}"><img class="delete-icon" src="{% static 'plus.png' %}"/></a>
+                    </button>
+                    <input type="text" name="name" value="{{cartItem.qty}}">
+                    <button class="minus-btn" type="button" name="button">
+                        <a href="/app/decrement/{{cartItem.id}}"><img class="delete-icon" src="{% static 'minus.png' %}"/></a>
+                    </button>
+                </div>
+            
+                <div class="total-price">PKR {{cartItem.product.price}}</div>
+            </div>
+        {% endfor %}
+        <!-- Title -->
+        <!-- <div class="title">
+          Shopping Bag
+        </div>
+       
+    
+        <div class="item">
+          <div class="buttons">
+            <span class="delete-btn"></span>
+            <span class="like-btn"></span>
+          </div>
+       
+          <div class="image">
+            <img src="item-1.png" alt="" />
+          </div>
+       
+          <div class="description">
+            <span>Common Projects</span>
+            <span>Bball High</span>
+            <span>White</span>
+          </div>
+       
+          <div class="quantity">
+            <button class="plus-btn" type="button" name="button">
+              <img src="plus.svg" alt="" />
+            </button>
+            <input type="text" name="name" value="1">
+            <button class="minus-btn" type="button" name="button">
+              <img src="minus.svg" alt="" />
+            </button>
+          </div>
+       
+          <div class="total-price">$549</div>
+        </div>
+       
+  
+        <div class="item">
+          <div class="buttons">
+            <span class="delete-btn"></span>
+            <span class="like-btn"></span>
+          </div>
+       
+          <div class="image">
+            <img src="item-2.png" alt=""/>
+          </div>
+       
+          <div class="description">
+            <span>Maison Margiela</span>
+            <span>Future Sneakers</span>
+            <span>White</span>
+          </div>
+       
+          <div class="quantity">
+            <button class="plus-btn" type="button" name="button">
+              <img src="plus.svg" alt="" />
+            </button>
+            <input type="text" name="name" value="1">
+            <button class="minus-btn" type="button" name="button">
+              <img src="minus.svg" alt="" />
+            </button>
+          </div>
+       
+          <div class="total-price">$870</div>
+        </div>
+ 
+        <div class="item">
+          <div class="buttons">
+            <span class="delete-btn"></span>
+            <span class="like-btn"></span>
+          </div>
+       
+          <div class="image">
+            <img src="item-3.png" alt="" />
+          </div>
+       
+          <div class="description">
+            <span>Our Legacy</span>
+            <span>Brushed Scarf</span>
+            <span>Brown</span>
+          </div>
+       
+          <div class="quantity">
+            <button class="plus-btn" type="button" name="button">
+              <img src="plus.svg" alt="" />
+            </button>
+            <input type="text" name="name" value="1">
+            <button class="minus-btn" type="button" name="button">
+              <img src="minus.svg" alt="" />
+            </button>
+          </div>
+       
+          <div class="total-price">$349</div>
+        </div> -->
+    </div>
+
+
+    <!-- end -->
+    <script src="{% static 'script.js' %}"  ></script> 
+</body>
+</html>

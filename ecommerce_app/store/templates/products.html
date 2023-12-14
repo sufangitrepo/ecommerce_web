@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>grocery store</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- css file link -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    <header class="header">
+
+        <a href="/app" class="logo"> <i class="fas fa-shopping-basket"></i>grocer</a>
+
+        <nav class="navbar">
+            <a href="/app">home</a>
+            <a href="/app">categories</a>
+            <a href="/app/products/">products</a>
+
+        </nav>
+        <div class="icons">
+            <div class="fas fa-search" id="search-btn"></div>
+            <a href="/app/cart/"><div class="fas fa-shopping-cart" id="cart-btn"></div></a>
+            <div class="fas fa-user" id="login-btn"></div>
+        </div>
+
+        <form action="" class="search-form">
+            <input type="search" name="search" value="{{ request.GET.q }}" id="search-box placeholder=" search here . . .>
+        </form>
+
+        <div class="login-form">
+            {% csrf_token %}
+            <h3>User Name</h3>
+            <p>{{user}}</p>
+            {% if user %}
+            <a href="/app/logout/"><input type="submit" value="Logout" class="btn"></a>
+            {% else %}
+            <a href="/app/login/"><input type="submit" value="login now" class="btn"></a>
+
+            {% endif %}
+        </form>
+    </header>
+    
+    <section style="margin-top: 100px;" class="soft drinks" id="soft drinks">
+        <h1 class="heading">{{category}}</h1>
+        <!-- <div class="swiper products-slider"> -->
+
+            <div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 30px;">
+                {% for prod in products %}
+                    <div class="box" style="margin: 10px;">
+                        <img style="width: 200px; height: 200px;" src="/media/{{prod.img}}" alt="">
+                        <h2>{{prod.name}}</h2>
+                        <div class="price"> RS:{{prod.price}}/- </div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <a href="/app/addToCart/{{prod.id}}" class="btn">add to cart</a>
+                    </div>
+                {% endfor %}
+            </div>
+        <!-- </div> -->
+
+    </section>
+    <script src="{% static 'script.js' %}"  ></script> 
+</body>
+
+</html>

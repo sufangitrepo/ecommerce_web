@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% load static %}
+    <meta charset="utf-8">
+    <title>Registration Form in HTML | CodingNepal</title>
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    
+</head>
+<body>
+    <div class="wrapper">
+        <div class="title-text">
+           <div class="title signup">
+              Signup Form
+           </div>
+        </div>
+        <div class="form-container">
+            <div class="form-inner">
+                <form class="signup" action="/app/signup/" method="post">
+                    {% csrf_token %}
+                    <p>{{message}}</p>
+                    <div class="field">
+                        <input type="text" name="username" placeholder="username" required>
+                    </div>
+                    <div class="field">
+                        <input type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="field btn">
+                        <div class="btn-layer"></div>
+                        <input type="submit" value="Signup">
+                    </div>
+                    <div class="signup-link">
+                        already have an account? <a href="/app/login/">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

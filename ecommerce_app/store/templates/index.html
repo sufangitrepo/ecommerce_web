@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grocery store</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+
+    <!-- font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- css file link -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+<body>
+    
+
+<header class="header">
+
+    <a href="/app" class="logo"> <i class="fas fa-shopping-basket"></i>grocer</a>
+
+        <nav class="navbar">
+            <a href="/app">home</a>
+            <a href="/app">categories</a>
+            <a href="/app/products/">products</a>
+
+        </nav>
+    <div class="icons">
+        <div class="fas fa-search" id="search-btn"></div>
+        <a href="/app/cart/"><div class="fas fa-shopping-cart" id="cart-btn"></div></a>
+        <div class="fas fa-user" id="login-btn"></div>
+    </div>
+    
+    <form action= "/app/products/" class= "search-form">
+        <input type="search" name="search" value="{{ request.GET.q }}" id="search-box placeholder=" search here . . .>
+        <!-- <label for="search-box" class="fas fa-search"></label> -->
+    </form>
+   <div action="login/" method="get" class="login-form">
+    <h3>User Name</h3>
+    <p>{{user}}</p>
+    {% if user %}
+        <a href="/app/logout/"><input type="submit" value="Logout" class="btn"></a>
+    {% else %}
+        <a href="/app/login/"><input type="submit" value="login now" class="btn"></a>
+       
+    {% endif %}
+   </div>
+</header>
+
+<!--header section end-->
+
+
+<section class="home" id="home">
+
+    <div class="content">
+        <h3>fresh and <span>organic</span> products for you</h3>
+        <p>Your One-Stop Grocery Destination:<br> Quality, Convenience, and Savings Await</p>
+        <a href="/app/products" class="btn">shop now</a>
+
+    </div>
+</section>
+<!--home section end-->
+<br>
+
+
+<section class="categories" id="categories">
+    
+    <h1 class="heading">product <span>categories</span></h1>
+    <div class="box-container">
+        {% for category in categories %}
+            <div class="box">
+                <a href="/app/products/{{category.id}}"> 
+                    <img src="/media/{{category.img}}" style="width: 200px; height: 200px; object-fit: contain;" alt="not found">
+                    <h3>{{category.name}}</h3>
+                    <p>upto {{category.offer}}% off</p>
+                    <a href="/app/products/"><span class="btn">shop now</span></a>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+<!--cateagries section end-->
+
+
+<section class="features" id="features">
+    <h1 class="heading">our <span> features</span></h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="{% static 'organic.jpg' %}"  alt="">
+            <h3>fresh and organic</h3>
+            <p>Experience the true essence of freshness and purity with our handpicked selection of organic produce.</p>
+            <a href="/app" class="btn">read more</a>
+        </div>
+
+        <div class="box">
+            <img src="{% static 'delivery.png' %}"  alt="">
+            <h3>free home delivery</h3>
+            <p>Enjoy the ultimate convenience with our free home delivery service, bringing your favorites right to your doorstep</p>
+            <a href="/app" class="btn">read more</a>
+        </div>
+
+        <div class="box">
+            <img src="{% static 'payment.png' %}"  alt="">
+            <h3>easy payment</h3>
+            <p>Streamline your online transactions with our user-friendly payment system, making your purchases effortless and efficient.</p>
+            <a href="/app" class="btn">read more</a>
+        </div>
+    </div>
+
+</section>
+
+<!--features section end-->
+
+
+<!--Footer section-->
+
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+           <h3>grocer <i class="fas fa-shopping-basket"></i> </h3>
+           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+           <div class="share">
+             <a href="https://web.facebook.com/" class="fab fa-facebook-f"></a>
+             <a href="https://www.instagram.com/" class="fab fa-instagram"></a>
+             <a href="https://twitter.com/" class="fab fa-twitter"></a>
+             <a href="https://www.linkedin.com/" class="fab fa-linkedin"></a>
+           </div>
+        </div>
+
+       <div class="box">
+         <h3>contact info</h3>
+         <a href="/app" class="links"><i class="fas fa-phone"></i> +92 3123456789</a>
+         <a href="/app" class="links"><i class="fas fa-phone"></i> +92 3123456780</a>
+         <a href="/app" class="links"><i class="fas fa-envelope"></i> grocer292@gmail.com</a>
+         <a href="/app" class="links"><i class="fas fa-map-market-alt"></i> Bahawal pur, pakistan </a>
+       </div>   
+    
+      <div class="box">
+         <h3>quick links</h3>
+         <a href="/app" class="links"> <i class="fas fa-arrow-right"></i> home</a>
+         <a href="/app" class="links"> <i class="fas fa-arrow-right"></i> categories</a>
+         <a href="/app/products/" class="links"> <i class="fas fa-arrow-right"></i> products</a>
+      </div>   
+
+      <div class="box">
+         <h3>newslatter</h3>
+         <p>subscribe for latest update</p>
+         <input type="email" placeholder="your email" class="email">
+         <input type="submit" value="subscribe" class="btn">
+         <img src="{% static 'payment.png' %}"  class="payment-image" alt="">
+       </div>   
+   </div>
+
+</section>
+
+<!--footer section end-->
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" async></script> -->
+
+    <!-- custom js file link-->
+    <script src="{% static 'script.js' %}" async ></script> 
+
+</body>
+</html>
